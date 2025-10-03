@@ -80,4 +80,13 @@ public class FamilyTreeService {
     public List<Relationship> getRelationships(Long memberId) {
         return relationshipRepository.findByMemberId(memberId);
     }
+
+    public Optional<FamilyTree> getTreeWithMembers(Long treeId) {
+        Optional<FamilyTree> tree = familyTreeRepository.findById(treeId);
+        if (tree.isPresent()) {
+            // Fetch members to initialize the collection
+            tree.get().getMembers().size();
+        }
+        return tree;
+    }
 }

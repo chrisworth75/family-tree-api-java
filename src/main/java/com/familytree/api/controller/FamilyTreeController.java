@@ -54,6 +54,13 @@ public class FamilyTreeController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/{treeId}/full")
+    public ResponseEntity<?> getTreeWithMembers(@PathVariable Long treeId) {
+        return familyTreeService.getTreeWithMembers(treeId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("/{treeId}")
     public ResponseEntity<?> deleteTree(@PathVariable Long treeId) {
         familyTreeService.deleteTree(treeId);

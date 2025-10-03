@@ -1,5 +1,6 @@
 package com.familytree.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -25,6 +26,7 @@ public class FamilyTree {
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "familyTree", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<Member> members = new HashSet<>();
 
     @PrePersist
