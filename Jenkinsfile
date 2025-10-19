@@ -74,6 +74,12 @@ pipeline {
             }
             steps {
                 script {
+                    // Kill any process using port 3200
+                    sh """
+                        echo "Killing any process using port 3200..."
+                        lsof -ti:3200 | xargs kill -9 || true
+                    """
+
                     // Create network for container communication
                     sh """
                         docker network create family-tree-java-network || echo "Network already exists"
